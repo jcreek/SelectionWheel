@@ -28,7 +28,7 @@ function rotTween(to) {
 }
 
 function stopSpinning() {
-  console.log('done');
+  // console.log('done');
   const chartElement = document.getElementById('chart');
   chartElement.remove();
   const questionElement = document.getElementById('question');
@@ -110,8 +110,11 @@ function drawWheel() {
   arcs
     .append('text')
     .attr('transform', (d) => {
+      // eslint-disable-next-line no-param-reassign
       d.innerRadius = 0;
+      // eslint-disable-next-line no-param-reassign
       d.outerRadius = r;
+      // eslint-disable-next-line no-param-reassign
       d.angle = (d.startAngle + d.endAngle) / 2;
       return `rotate(${(d.angle * 180) / Math.PI - 90})translate(${
         d.outerRadius - 10
@@ -120,6 +123,7 @@ function drawWheel() {
     .attr('text-anchor', 'end')
     .text((d, i) => data[i].label);
 
+  // eslint-disable-next-line no-unused-vars
   function spin(d) {
     container.on('click', null);
     // all slices have been seen, all done
