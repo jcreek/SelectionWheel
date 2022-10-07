@@ -1,4 +1,5 @@
 import * as d3 from 'd3';
+import loadServiceWorker from './loadServiceWorker';
 
 require('./assets/favicon.ico');
 require('./assets/android-chrome-192x192.png');
@@ -208,3 +209,7 @@ function startSpinning() {
 
 const button = document.getElementById('startSpinning');
 button.onclick = startSpinning;
+
+if (process.env.NODE_ENV === 'production') {
+  loadServiceWorker();
+}

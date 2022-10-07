@@ -1,9 +1,12 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+
+const options = {};
 
 module.exports = {
-  mode: 'development',
+  target: 'web',
   entry: {
     bundle: path.resolve(__dirname, 'src/index.ts'),
   },
@@ -12,23 +15,7 @@ module.exports = {
     filename: '[name].[contenthash].js',
     clean: true,
     assetModuleFilename: '[name].[contenthash][ext]',
-    publicPath: './',
-  },
-  devtool: 'source-map',
-  devServer: {
-    static: {
-      directory: path.resolve(__dirname, 'dist'),
-    },
-    port: 3000,
-    open: true,
-    hot: true,
-    compress: true,
-    historyApiFallback: true,
-    devMiddleware: {
-      index: true,
-      mimeTypes: { phtml: 'text/html' },
-      writeToDisk: true,
-    },
+    publicPath: '',
   },
   watchOptions: { poll: true },
   module: {
@@ -100,5 +87,6 @@ module.exports = {
       template: 'src/template.html',
     }),
     new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/.*/]),
+    new WebpackManifestPlugin(options),
   ],
 };
