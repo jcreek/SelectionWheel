@@ -14,6 +14,10 @@ To run the project locally with hot reload, use the command `npm run dev`.
 
 All linting errors can be automatically fixed (usually) by running `npm run lint -- --fix` before you commit your changes.
 
+This project uses symantic versioning. `Major.Minor.Patch` e.g. 1.1.2
+
+When you create your Pull Request, ensure you add the relevant git tag using something like `git tag -a 1.1.0 -m "Add PWA support"` or `git tag -a 1.1.1 -m "Fix input duplication"`, then `git push origin --tags` to push the tag to the repository.
+
 ## Development notes
 
 You can access a list of all the assets when debugging by visiting `http://localhost:3000/webpack-dev-server`
