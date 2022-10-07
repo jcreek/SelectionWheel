@@ -59,6 +59,24 @@ module.exports = {
         type: 'asset/resource',
       },
       {
+        // Add support for favicon
+        test: /\.ico$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]', // <-- retain original file name
+            },
+          },
+        ],
+      },
+      {
+        // Add support for manifest
+        test: /\.webmanifest$/i,
+        use: 'webpack-webmanifest-loader',
+        type: 'asset/resource',
+      },
+      {
         // Add inlining of SVG
         test: /\.svg$/i,
         type: 'asset/inline',

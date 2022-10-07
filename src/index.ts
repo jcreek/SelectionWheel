@@ -1,5 +1,9 @@
 import * as d3 from 'd3';
 
+require('./assets/favicon.ico');
+require('./assets/android-chrome-192x192.png');
+require('./assets/android-chrome-512x512.png');
+
 const padding = {
   top: 20,
   right: 40,

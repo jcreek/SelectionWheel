@@ -26,6 +26,7 @@
     "eslint": "^8.17.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "react-dev-utils": "^12.0.1",
     "sass": "^1.52.3",
@@ -34,7 +35,8 @@
     "typescript": "^4.7.3",
     "webpack": "^5.73.0",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.9.2"
+    "webpack-dev-server": "^4.9.2",
+    "webpack-webmanifest-loader": "^2.0.2"
   },
   "dependencies": {
     "@types/d3": "^7.4.0",
