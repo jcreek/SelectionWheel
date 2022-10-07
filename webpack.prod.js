@@ -1,4 +1,4 @@
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const { InjectManifest } = require('workbox-webpack-plugin');
 const common = require('./webpack.common');
 
