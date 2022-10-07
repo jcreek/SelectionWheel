@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "preserveConstEnums": true
+  },
+  "include": ["src/**/*", "src/custom.d.ts"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}
