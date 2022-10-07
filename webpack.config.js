@@ -77,6 +77,11 @@ module.exports = {
         type: 'asset/resource',
       },
       {
+        // Add support for audio
+        test: /\.(mp3)$/i,
+        type: 'asset/resource',
+      },
+      {
         // Add inlining of SVG
         test: /\.svg$/i,
         type: 'asset/inline',
