@@ -2,7 +2,7 @@ export default function loadServiceWorker() {
   let deferredPrompt;
 
   window.addEventListener('beforeinstallprompt', (e) => {
-    const installApp = document.getElementById('install-offline-app');
+    const installApp = document.getElementById('install-app-btn-container');
 
     installApp.addEventListener('click', async () => {
       if (deferredPrompt !== null) {

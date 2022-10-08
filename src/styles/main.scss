@@ -1,34 +1,261 @@
+body { 
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.topbar-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  align-content: flex-start;
+  background-color: #ff8800;
+  margin-bottom: 25px;
+  gap: 5px;
+}
+
+.topbar-container h1 {
+  color: white;
+  font-family: 'Fuzzy Bubbles', cursive;
+  font-weight: 700;
+  margin-block-start: 0.2em;
+  margin-block-end: 0.2em;
+
+  a {
+    color: white;
+  }
+
+  a:link {
+    text-decoration: none;
+  }
+}
+.topbar-container p {
+  margin-block-start: 0.2em;
+  margin-block-end: 0.2em;
+}
+
+.topbar-items:nth-child(1) {
+  display: block;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  align-self: flex-start;
+  order: 0;
+}
+
+.topbar-items:nth-child(2) {
+  display: block;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: 200px;
+  align-self: center;
+  order: 0;
+}
+
+#input-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: center;
+  gap: 25px;
+}
+
+.input-items:nth-child(1) {
+  display: block;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: 500px;
+  align-self: auto;
+  order: 0;
+}
+
+.input-items:nth-child(2) {
+  display: block;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  align-self: center;
+  order: 0;
+}
+
+#input-lines {
+  max-width: 100%;
+}
+
+#start-over {
+  position: absolute;
+  top: 100px;
+  left: auto;
+}
+
+#spinner-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: center;
+}
+
+.spinner-items:nth-child(1) {
+  display: block;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: 800px;
+  align-self: auto;
+  order: 0;
+}
+
+.spinner-items:nth-child(2) {
+  display: block;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  align-self: auto;
+  order: 0;
+  width: 100%;
+}
+
 text{
-  font-family:Helvetica, Arial, sans-serif;
-  font-size:11px;
+  font-family: Arial, sans-serif;
+  font-size:35px;
   pointer-events:none;
 }
-#chart{
-  position:absolute;
-  width:500px;
-  height:500px;
-  top:0;
-  left:0;
+#chart{ 
+  max-width:800px;
+  margin-left: auto;
+  margin-right: auto;
 }
-#question{
-  position: absolute;
-  width:400px;
-  height:500px;
-  top:0;
-  left:520px;
-}
+
 #question h1{
   font-size: 50px;
   font-weight: bold;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  position: absolute;
-  padding: 0;
-  margin: 0;
-  top:50%;
+  font-family: Arial, sans-serif;
   -webkit-transform:translate(0,-50%);
           transform:translate(0,-50%);
+  text-align: center;
 }
 
-#install-offline-app {
+#install-app-btn-container {
   display: none;
+}
+
+.footer-container {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  color: #423E37;
+  padding-bottom: 10px;
+  background-color: white;
+}
+
+.footer-container hr {
+  max-width: 500px;
+  border-top: 0.5px solid #423E37;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer-container a, #privacy-container a {
+  color: #423E37;
+}
+
+.footer-container a:hover, #privacy-container a:hover {
+  color: #81796c;
+}
+
+#privacy-container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+  margin-bottom: 50px;
+}
+
+/* Buttons */
+
+.button {
+  appearance: none;
+  border: 1px solid rgba(27, 31, 35, .15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 6px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.button:focus:not(:focus-visible):not(.focus-visible) {
+  box-shadow: none;
+  outline: none;
+}
+
+.button:disabled {
+  border-color: rgba(27, 31, 35, .1);
+  color: rgba(255, 255, 255, .8);
+  cursor: default;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button-green {
+  background-color: #2ea44f;
+}
+
+.button-green:hover {
+  background-color: #2c974b;
+}
+
+.button-green:focus {
+  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+  outline: none;
+}
+
+.button-green:disabled {
+  background-color: #94d3a2;
+}
+
+.button-green:active {
+  background-color: #298e46;
+  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+}
+
+.button-black {
+  background-color: #423E37;
+}
+
+.button-black:hover {
+  background-color: #2e2b26;
+}
+
+.button-blue {
+  background-color: #388697;
+}
+
+.button-blue:hover {
+  background-color: #275d69;
+}
+
+.button-white {
+  background-color: #FFFFFF;
+  color: black;
 }
