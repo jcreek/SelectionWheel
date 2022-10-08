@@ -4,6 +4,7 @@ import loadServiceWorker from './loadServiceWorker';
 require('./assets/favicon.ico');
 require('./assets/android-chrome-192x192.png');
 require('./assets/android-chrome-512x512.png');
+require('./styles/main.scss');
 
 const padding = {
   top: 20,
@@ -11,8 +12,11 @@ const padding = {
   bottom: 0,
   left: 0,
 };
-const w = 500 - padding.left - padding.right;
-const h = 500 - padding.top - padding.bottom;
+
+const baseSpinnerSizePx = 800;
+
+const w = baseSpinnerSizePx - padding.left - padding.right;
+const h = baseSpinnerSizePx - padding.top - padding.bottom;
 const r = Math.min(w, h) / 2;
 let rotation = 0;
 let oldrotation = 0;
@@ -76,8 +80,8 @@ function drawWheel() {
     .select('#chart')
     .append('svg')
     .data([data])
-    .attr('width', w + padding.left + padding.right)
-    .attr('height', h + padding.top + padding.bottom);
+    .attr('preserveAspectRatio', 'xMinYMin meet')
+    .attr('viewBox', `0 0 ${w + padding.left + padding.right} ${h + padding.top + padding.bottom}`);
   const container = svg
     .append('g')
     .attr('class', 'chartholder')
@@ -171,6 +175,10 @@ function drawWheel() {
   makeArrowAndCircle(svg, container);
 }
 
+function startOver() {
+  stopSpinning();
+}
+
 function startSpinning() {
   const textArea = <HTMLInputElement>document.getElementById('input-lines');
   const inputData = textArea.value.trim()
@@ -192,9 +200,19 @@ function startSpinning() {
   // Make the elements
   const chartElement = document.createElement('div');
   chartElement.setAttribute('id', 'chart');
+  chartElement.setAttribute('class', 'spinner-items');
+  document.getElementById('spinner-container').appendChild(chartElement);
+  const startOverElement = document.createElement('button');
+  startOverElement.setAttribute('id', 'start-over');
+  startOverElement.setAttribute('class', 'button button-blue');
+  startOverElement.setAttribute('role', 'button');
+  startOverElement.onclick = startOver;
+  startOverElement.textContent = 'Start over';
+  chartElement.appendChild(startOverElement);
   document.getElementById('spinner-container').appendChild(chartElement);
   const questionElement = document.createElement('div');
   questionElement.setAttribute('id', 'question');
+  questionElement.setAttribute('class', 'spinner-items');
   const h1Element = document.createElement('h1');
   questionElement.appendChild(h1Element);
   document.getElementById('spinner-container').appendChild(questionElement);

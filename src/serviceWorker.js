@@ -1,6 +1,6 @@
 import { precacheAndRoute } from 'workbox-precaching';
 import * as navigationPreload from 'workbox-navigation-preload';
-import { NetworkFirst, CacheFirst } from 'workbox-strategies';
+import { NetworkFirst, CacheFirst, StaleWhileRevalidate } from 'workbox-strategies';
 import { registerRoute, NavigationRoute, Route } from 'workbox-routing';
 
 // Precache the manifest
@@ -20,3 +20,10 @@ const imageAssetRoute = new Route(({ request }) => request.destination === 'imag
 
 registerRoute(navigationRoute);
 registerRoute(imageAssetRoute);
+
+registerRoute(
+  ({ url }) => url.origin === 'https://fonts.googleapis.com',
+  new StaleWhileRevalidate({
+    cacheName: 'google-fonts-stylesheets',
+  }),
+);

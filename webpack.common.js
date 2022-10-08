@@ -86,6 +86,12 @@ module.exports = {
       filename: 'index.html',
       template: 'src/template.html',
     }),
+    new HtmlWebpackPlugin({
+      inject: 'body',
+      title: 'Privacy Policy',
+      filename: 'privacy-policy.html',
+      template: 'src/privacy.html',
+    }),
     new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/.*/]),
     new WebpackManifestPlugin(options),
   ],
