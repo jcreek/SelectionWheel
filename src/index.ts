@@ -175,6 +175,10 @@ function drawWheel() {
   makeArrowAndCircle(svg, container);
 }
 
+function startOver() {
+  stopSpinning();
+}
+
 function startSpinning() {
   const textArea = <HTMLInputElement>document.getElementById('input-lines');
   const inputData = textArea.value.trim()
@@ -198,6 +202,13 @@ function startSpinning() {
   chartElement.setAttribute('id', 'chart');
   chartElement.setAttribute('class', 'spinner-items');
   document.getElementById('spinner-container').appendChild(chartElement);
+  const startOverElement = document.createElement('button');
+  startOverElement.setAttribute('id', 'start-over');
+  startOverElement.setAttribute('class', 'button button-blue');
+  startOverElement.setAttribute('role', 'button');
+  startOverElement.onclick = startOver;
+  startOverElement.textContent = 'Start over';
+  chartElement.appendChild(startOverElement);
   document.getElementById('spinner-container').appendChild(chartElement);
   const questionElement = document.createElement('div');
   questionElement.setAttribute('id', 'question');
