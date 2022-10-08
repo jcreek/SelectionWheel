@@ -88,7 +88,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       inject: 'body',
-      title: 'Selection Wheel - the funnest way to make decisions',
+      title: 'Privacy Policy',
       filename: 'privacy-policy.html',
       template: 'src/privacy.html',
     }),
