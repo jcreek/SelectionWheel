@@ -228,6 +228,15 @@ function startSpinning() {
 const button = document.getElementById('startSpinning');
 button.onclick = startSpinning;
 
+const textArea = <HTMLInputElement>document.getElementById('input-lines');
+if (window.localStorage.TextEditorData) {
+  textArea.value = window.localStorage.TextEditorData;
+}
+
+textArea.addEventListener('keyup', () => {
+  window.localStorage.TextEditorData = textArea.value;
+});
+
 if (process.env.NODE_ENV === 'production') {
   loadServiceWorker();
 }
