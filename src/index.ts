@@ -26,6 +26,8 @@ const color = d3.scaleOrdinal(d3.schemeCategory10);
 let data = [];
 const testData = ['Person 1', 'Person 2', 'Person 3', 'Person 4'];
 
+let imageUrlForSpinner = '';
+
 // eslint-disable-next-line no-unused-vars
 function rotTween(to) {
   const i = d3.interpolate(oldrotation % 360, rotation);
@@ -57,22 +59,41 @@ function makeArrowAndCircle(
     .attr('d', `M-${r * 0.15},0L0,${r * 0.05}L0,-${r * 0.05}Z`)
     .style('fill', 'black');
   // draw spin circle
+  if (imageUrlForSpinner.length > 0) {
+    const defs = svg.append('svg:defs');
+
+    defs.append('svg:pattern')
+      .attr('id', 'image')
+      .attr('width', 1)
+      .attr('height', 1)
+      .attr('patternContentUnits', 'objectBoundingBox')
+      .append('svg:image')
+      .attr('xlink:href', imageUrlForSpinner)
+      .attr('width', 1)
+      .attr('height', 1)
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('preserveAspectRatio', 'xMaxYMax slice');
+  }
   container
     .append('circle')
     .attr('cx', 0)
     .attr('cy', 0)
     .attr('r', 60)
     .style('fill', 'white')
+    .style('fill', 'url(#image)')
     .style('cursor', 'pointer');
-  // spin text
-  container
-    .append('text')
-    .attr('x', 0)
-    .attr('y', 10)
-    .attr('text-anchor', 'middle')
-    .text('SPIN')
-    .style('font-weight', 'bold')
-    .style('font-size', '30px');
+  if (imageUrlForSpinner.length === 0) {
+    // spin text
+    container
+      .append('text')
+      .attr('x', 0)
+      .attr('y', 10)
+      .attr('text-anchor', 'middle')
+      .text('SPIN')
+      .style('font-weight', 'bold')
+      .style('font-size', '30px');
+  }
 }
 
 function drawWheel() {
@@ -236,6 +257,11 @@ if (window.localStorage.TextEditorData) {
 textArea.addEventListener('keyup', () => {
   window.localStorage.TextEditorData = textArea.value;
 });
+
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.has('imgUrl')) {
+  imageUrlForSpinner = urlParams.get('imgUrl');
+}
 
 if (process.env.NODE_ENV === 'production') {
   loadServiceWorker();
