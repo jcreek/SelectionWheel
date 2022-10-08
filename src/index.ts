@@ -182,7 +182,7 @@ function startOver() {
 function startSpinning() {
   const textArea = <HTMLInputElement>document.getElementById('input-lines');
   const inputData = textArea.value.trim()
-    ? textArea.value.split('\n')
+    ? textArea.value.split('\n').filter((elm) => elm)
     : testData;
   const tempData = [];
   for (let index = 0; index < inputData.length; index += 1) {
