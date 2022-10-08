@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-EZ2WT7NQMK"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-EZ2WT7NQMK');
+        </script>
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="A fun and simple selection wheel - input names and get click to select them at random.">
+        <title><%= htmlWebpackPlugin.options.title %></title>
+        <link rel="manifest" href="<%= require('../src/assets/manifest.webmanifest') %>" />
+        <link rel="shortcut icon" href="favicon.ico">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header class="topbar-container">
+            <div class="topbar-items"><h1><a href="/">Selection Wheel</a></h1></div>
+            <p id="install-app-btn-container" class="topbar-items">
+                <button id="install-offline-app" class="button button-black" role="button">
+                    <span>Install the app (you can even use it offline!)</span>
+                </button>
+            </p>
+        </header>
+        
+        <div id="privacy-container">
+            <h1>Privacy Policy</h1>
+            <p>This Website stores none of your information remotely. The only information stored locally is a saved list of your input names, on your own device.</p>
+            <h2>What data do we collect?</h2>
+            <p>None.</p>
+            <h2>How do we collect your data?</h2>
+            <p>I don't.</p>
+            <h2>How will we use your data?</h2>
+            <p>I won't.</p>
+            <h2>How do we store your data?</h2>
+            <p>I don't.</p>
+            <h2>Marketing</h2>
+            <p>I don't market anything to you.</p>
+            <h2>What are your data protection rights?</h2>
+            <p>I would like to make sure you are fully aware of all of your data protection rights. Every user is entitled to
+                the following:</p>
+            <ul>
+                <li>
+                    <p>The right to access - You have the right to request copies of your personal data. We may
+                        charge you a small fee for this service.</p>
+                </li>
+                <li>
+                    <p>The right to rectification - You have the right to request that we correct any information you
+                        believe is inaccurate. You also have the right to request we complete the information you
+                        believe is incomplete.</p>
+                </li>
+                <li>
+                    <p>The right to erasure - You have the right to request that we erase your personal data, under
+                        certain conditions.</p>
+                </li>
+                <li>
+                    <p>The right to restrict processing - You have the right to request that we restrict the processing
+                        of your personal data, under certain conditions.</p>
+                </li>
+                <li>
+                    <p>The right to object to processing - You have the right to object to our processing of your
+                        personal data, under certain conditions.</p>
+                </li>
+                <li>
+                    <p>The right to data portability - You have the right to request that we transfer the data that we
+                        have collected to another organization, or directly to you, under certain conditions.</p>
+                </li>
+            </ul>
+            <p>If you make a request, I have one month to respond to you. If you would like to exercise any of these rights,
+                please contact me via <a href="https://www.twitter.com/jcreek23">Twitter</a>.</p>
+            <h2 >What are cookies?</h2>
+            <p>Cookies are text files placed on your computer to collect standard Internet log information and visitor behavior
+                information. When you visit our websites, we may collect information from you automatically through cookies or
+                similar technology</p>
+            <p>For further information, visit <a href="https://allaboutcookies.org">allaboutcookies.org</a>.</p>
+            <h2 >How do we use cookies?</h2>
+            <p>I don't.</p>
+            <h2>What types of cookies do we use?</h2>
+            <p>None.</p>
+            <h2>How to manage your cookies</h2>
+            <p>You can set your browser not to accept cookies, and the above website tells you how to remove cookies from your
+                browser. However, in a few cases, some of our website features may not function as a result.</p>
+            <h2></h2>Privacy policies of other websites</h2>
+            <p>This website contains links to other websites. My privacy policy applies only to this website, so if you click on
+                a link to another website, you should read their privacy policy.</p>
+            <h2></h2>Changes to our privacy policy</h2>
+            <p>I keep my privacy policy under regular review and places any updates on this web page. This privacy policy was
+                last updated on 8th October 2022.</p>
+            <h2>How to contact us</h2>
+            <p>If you have any questions about this privacy policy, the data I hold on you, or you would like to exercise one of
+                your data protection rights, please do not hesitate to contact me via <a href="https://www.twitter.com/jcreek23">Twitter</a>.</p>
+            <h2>How to contact the appropriate authorities</h2>
+            <p>Should you wish to report a complaint or if you feel that I have not addressed your concern in a satisfactory
+                manner, you may contact the Information Commissioner's Office.</p>
+        </div>
+
+
+        <footer class="footer-container">
+            <hr>
+            <span class="footer-items">Copyright &copy; 2022 Josh Creek</span>
+            <span> | </span>
+            <span class="footer-items"><a href="/privacy-policy.html">Privacy Policy</a></span>
+        </footer>
+    </body>
+</html>

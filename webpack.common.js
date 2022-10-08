@@ -86,6 +86,12 @@ module.exports = {
       filename: 'index.html',
       template: 'src/template.html',
     }),
+    new HtmlWebpackPlugin({
+      inject: 'body',
+      title: 'Selection Wheel - the funnest way to make decisions',
+      filename: 'privacy-policy.html',
+      template: 'src/privacy.html',
+    }),
     new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/.*/]),
     new WebpackManifestPlugin(options),
   ],
