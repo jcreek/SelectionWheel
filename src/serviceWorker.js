@@ -7,9 +7,6 @@ import { registerRoute, NavigationRoute, Route } from 'workbox-routing';
 // eslint-disable-next-line no-underscore-dangle, no-restricted-globals
 precacheAndRoute(self.__WB_MANIFEST);
 
-// Enable navigation preload - this should reduce navigation latency
-navigationPreload.enable();
-
 const navigationRoute = new NavigationRoute(new NetworkFirst({
   cacheName: 'navigations',
 }));
