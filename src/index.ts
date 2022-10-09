@@ -77,25 +77,23 @@ function makeArrowAndCircle(
       .attr('x', 0)
       .attr('y', 0)
       .attr('preserveAspectRatio', 'xMaxYMax slice');
-  }
-  container
-    .append('circle')
-    .attr('cx', 0)
-    .attr('cy', 0)
-    .attr('r', 60)
-    .style('fill', 'white')
-    .style('fill', 'url(#image)')
-    .style('cursor', 'pointer');
-  if (imageUrlForSpinner.length === 0) {
-    // spin text
+
     container
-      .append('text')
-      .attr('x', 0)
-      .attr('y', 10)
-      .attr('text-anchor', 'middle')
-      .text('SPIN')
-      .style('font-weight', 'bold')
-      .style('font-size', '30px');
+      .append('circle')
+      .attr('cx', 0)
+      .attr('cy', 0)
+      .attr('r', 60)
+      .style('fill', 'white')
+      .style('fill', 'url(#image)')
+      .style('cursor', 'pointer');
+  } else {
+    container
+      .append('circle')
+      .attr('cx', 0)
+      .attr('cy', 0)
+      .attr('r', 60)
+      .style('fill', 'white')
+      .style('cursor', 'pointer');
   }
 }
 
