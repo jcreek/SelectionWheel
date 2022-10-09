@@ -180,6 +180,7 @@ function drawWheel() {
       .on('end', () => {
         // mark question as seen
         d3.select(`.slice:nth-child(${picked + 1}) path`).attr('fill', '#111');
+        d3.select(`.slice:nth-child(${picked + 1}) text`).attr('fill', '#ffffff');
         // populate question
         d3.select('#question h1').text(data[picked].label.trim());
         oldrotation = rotation;
