@@ -251,10 +251,10 @@ function startSpinning() {
   startOverElement.textContent = 'Start over';
   const muteElement = document.createElement('button');
   muteElement.setAttribute('id', 'mute');
-  muteElement.setAttribute('class', 'button button-red');
+  muteElement.setAttribute('class', 'button button-black');
   muteElement.setAttribute('role', 'button');
   muteElement.onclick = toggleMute;
-  muteElement.textContent = 'Mute';
+  muteElement.textContent = wheelSpinningSound.muted ? 'Unmute' : 'Mute';
   chartElement.appendChild(startOverElement);
   chartElement.appendChild(muteElement);
   document.getElementById('spinner-container').appendChild(chartElement);
