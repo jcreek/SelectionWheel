@@ -1,7 +1,9 @@
 import * as d3 from 'd3';
+import { Fireworks } from 'fireworks-js';
 import loadServiceWorker from './loadServiceWorker';
 import audioControls from './audioControls';
 import spinnerMp3 from './assets/spinner-sound.mp3';
+import tadaMp3 from './assets/tada-fanfare.mp3';
 
 require('./assets/favicon.ico');
 require('./assets/android-chrome-192x192.png');
@@ -12,9 +14,25 @@ require('./assets/favicon-32x32.png');
 require('./styles/main.scss');
 
 const wheelSpinningSound = new Audio(spinnerMp3);
+const tadaSound = new Audio(tadaMp3);
 if (window.localStorage.audioMuteSetting) {
   wheelSpinningSound.muted = window.localStorage.audioMuteSetting;
+  tadaSound.muted = window.localStorage.audioMuteSetting;
 }
+
+const fireworksContainer = document.getElementById('fireworks-container');
+function fireworksContainerOnClick() {
+  fireworksContainer.style.display = 'none';
+  document.getElementById('chart').click();
+  document.getElementsByClassName('chartholder')[0].dispatchEvent(new Event('click'));
+}
+fireworksContainer.onclick = fireworksContainerOnClick;
+
+const fireworks = new Fireworks(fireworksContainer, {
+  // sound: {
+  //   enabled: !wheelSpinningSound.muted,
+  // },
+});
 
 const padding = {
   top: 20,
@@ -163,11 +181,16 @@ function drawWheel() {
     // all slices have been seen, all done
     // console.log(`OldPick: ${oldpick.length}`, `Data length: ${data.length}`);
     if (oldpick.length === data.length) {
+      fireworksContainer.style.display = 'none';
+      fireworks.clear();
       stopSpinning();
       return;
     }
 
+    audioControls.stopAudio(tadaSound);
     audioControls.playAudio(wheelSpinningSound);
+    fireworksContainer.style.display = 'none';
+    fireworks.stop();
     const ps = 360 / data.length;
     const rng = Math.floor(Math.random() * 1440 + 360);
 
@@ -195,6 +218,14 @@ function drawWheel() {
         oldrotation = rotation;
 
         audioControls.stopAudio(wheelSpinningSound);
+        audioControls.playAudio(tadaSound);
+        fireworksContainer.style.display = 'block';
+        const sizes = {
+          width: window.innerWidth,
+          height: window.innerHeight,
+        };
+        fireworks.updateSize(sizes);
+        fireworks.start();
 
         /* Get the result value from object "data" */
         // console.log(data[picked].value);
@@ -216,8 +247,10 @@ function startOver() {
 
 function toggleMute() {
   audioControls.toggleMute(wheelSpinningSound);
+  audioControls.toggleMute(tadaSound);
   this.textContent = wheelSpinningSound.muted ? 'Unmute' : 'Mute';
   window.localStorage.audioMuteSetting = wheelSpinningSound.muted;
+  // TODO - toggle muting the fireworks from here
 }
 
 function startSpinning() {
