@@ -1,5 +1,7 @@
 import * as d3 from 'd3';
 import loadServiceWorker from './loadServiceWorker';
+import audioControls from './audioControls';
+import spinnerMp3 from './assets/spinner-sound.mp3';
 
 require('./assets/favicon.ico');
 require('./assets/android-chrome-192x192.png');
@@ -8,6 +10,11 @@ require('./assets/apple-touch-icon.png');
 require('./assets/favicon-16x16.png');
 require('./assets/favicon-32x32.png');
 require('./styles/main.scss');
+
+const wheelSpinningSound = new Audio(spinnerMp3);
+if (window.localStorage.audioMuteSetting) {
+  wheelSpinningSound.muted = window.localStorage.audioMuteSetting;
+}
 
 const padding = {
   top: 20,
@@ -159,6 +166,8 @@ function drawWheel() {
       stopSpinning();
       return;
     }
+
+    audioControls.playAudio(wheelSpinningSound);
     const ps = 360 / data.length;
     const rng = Math.floor(Math.random() * 1440 + 360);
 
@@ -185,6 +194,8 @@ function drawWheel() {
         d3.select('#question h1').text(data[picked].label.trim());
         oldrotation = rotation;
 
+        audioControls.stopAudio(wheelSpinningSound);
+
         /* Get the result value from object "data" */
         // console.log(data[picked].value);
 
@@ -200,6 +211,13 @@ function drawWheel() {
 
 function startOver() {
   stopSpinning();
+  audioControls.stopAudio(wheelSpinningSound);
+}
+
+function toggleMute() {
+  audioControls.toggleMute(wheelSpinningSound);
+  this.textContent = wheelSpinningSound.muted ? 'Unmute' : 'Mute';
+  window.localStorage.audioMuteSetting = wheelSpinningSound.muted;
 }
 
 function startSpinning() {
@@ -231,7 +249,14 @@ function startSpinning() {
   startOverElement.setAttribute('role', 'button');
   startOverElement.onclick = startOver;
   startOverElement.textContent = 'Start over';
+  const muteElement = document.createElement('button');
+  muteElement.setAttribute('id', 'mute');
+  muteElement.setAttribute('class', 'button button-red');
+  muteElement.setAttribute('role', 'button');
+  muteElement.onclick = toggleMute;
+  muteElement.textContent = 'Mute';
   chartElement.appendChild(startOverElement);
+  chartElement.appendChild(muteElement);
   document.getElementById('spinner-container').appendChild(chartElement);
   const questionElement = document.createElement('div');
   questionElement.setAttribute('id', 'question');
