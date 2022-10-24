@@ -1,6 +1,6 @@
 {
   "name": "SelectionWheel",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "A fun and simple selection wheel.",
   "main": "index.js",
   "scripts": {
