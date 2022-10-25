@@ -12,7 +12,9 @@ require('./assets/apple-touch-icon.png');
 require('./assets/favicon-16x16.png');
 require('./assets/favicon-32x32.png');
 require('./styles/main.scss');
+require('./styles/buttons.scss');
 require('./styles/modal.scss');
+require('./styles/spinner.scss');
 
 const wheelSpinningSound = new Audio(spinnerMp3);
 const tadaSound = new Audio(tadaMp3);
