@@ -12,6 +12,7 @@ require('./assets/apple-touch-icon.png');
 require('./assets/favicon-16x16.png');
 require('./assets/favicon-32x32.png');
 require('./styles/main.scss');
+require('./styles/modal.scss');
 
 const wheelSpinningSound = new Audio(spinnerMp3);
 const tadaSound = new Audio(tadaMp3);
@@ -19,10 +20,12 @@ if (window.localStorage.audioMuteSetting) {
   wheelSpinningSound.muted = window.localStorage.audioMuteSetting;
   tadaSound.muted = window.localStorage.audioMuteSetting;
 }
+const modal = document.getElementById('myModal');
 
 const fireworksContainer = document.getElementById('fireworks-container');
 function fireworksContainerOnClick() {
   fireworksContainer.style.display = 'none';
+  modal.style.display = 'none';
   document.getElementById('chart').click();
   document.getElementsByClassName('chartholder')[0].dispatchEvent(new Event('click'));
 }
@@ -33,6 +36,13 @@ const fireworks = new Fireworks(fireworksContainer, {
   //   enabled: !wheelSpinningSound.muted,
   // },
 });
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = (event) => {
+  if (event.target === modal) {
+    modal.style.display = 'none';
+  }
+};
 
 const padding = {
   top: 20,
@@ -66,8 +76,6 @@ function stopSpinning() {
   // console.log('done');
   const chartElement = document.getElementById('chart');
   chartElement.remove();
-  const questionElement = document.getElementById('question');
-  questionElement.remove();
   document.getElementById('input-lines').style.display = 'block';
   document.getElementById('startSpinning').style.display = 'block';
 }
@@ -214,7 +222,8 @@ function drawWheel() {
         d3.select(`.slice:nth-child(${picked + 1}) path`).attr('fill', '#111');
         d3.select(`.slice:nth-child(${picked + 1}) text`).attr('fill', '#ffffff');
         // populate question
-        d3.select('#question h1').text(data[picked].label.trim());
+        modal.style.display = 'block';
+        d3.select('#selection').text(data[picked].label.trim());
         oldrotation = rotation;
 
         audioControls.stopAudio(wheelSpinningSound);
@@ -291,17 +300,10 @@ function startSpinning() {
   chartElement.appendChild(startOverElement);
   chartElement.appendChild(muteElement);
   document.getElementById('spinner-container').appendChild(chartElement);
-  const questionElement = document.createElement('div');
-  questionElement.setAttribute('id', 'question');
-  questionElement.setAttribute('class', 'spinner-items');
-  const h1Element = document.createElement('h1');
-  questionElement.appendChild(h1Element);
-  document.getElementById('spinner-container').appendChild(questionElement);
 
   drawWheel();
 
   document.getElementById('chart').style.display = 'block';
-  document.getElementById('question').style.display = 'block';
   document.getElementById('input-lines').style.display = 'none';
   document.getElementById('startSpinning').style.display = 'none';
 }
