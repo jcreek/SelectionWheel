@@ -67,6 +67,14 @@ let data = [];
 const testData = ['Person 1', 'Person 2', 'Person 3', 'Person 4'];
 
 let imageUrlForSpinner = '';
+const imageUrlInput = document.getElementById('imageUrlInput') as HTMLInputElement;
+
+function imageUrlSetter() {
+  imageUrlForSpinner = imageUrlInput.value;
+}
+
+const button2 = document.getElementById('imageUrlSetter');
+button2.onclick = imageUrlSetter;
 
 // eslint-disable-next-line no-unused-vars
 function rotTween(to) {
@@ -80,6 +88,8 @@ function stopSpinning() {
   chartElement.remove();
   document.getElementById('input-lines').style.display = 'block';
   document.getElementById('startSpinning').style.display = 'block';
+  document.getElementById('imageUrlInput').style.display = 'block';
+  document.getElementById('imageUrlSetter').style.display = 'block';
 }
 
 function makeArrowAndCircle(
@@ -308,10 +318,14 @@ function startSpinning() {
   document.getElementById('chart').style.display = 'block';
   document.getElementById('input-lines').style.display = 'none';
   document.getElementById('startSpinning').style.display = 'none';
+  document.getElementById('imageUrlSetter').style.display = 'none';
+  document.getElementById('imageUrlInput').style.display = 'none';
 }
 
 const button = document.getElementById('startSpinning');
 button.onclick = startSpinning;
+
+
 
 const textArea = <HTMLInputElement>document.getElementById('input-lines');
 if (window.localStorage.TextEditorData) {
