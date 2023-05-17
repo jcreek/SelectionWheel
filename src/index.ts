@@ -71,10 +71,17 @@ const imageUrlInput = document.getElementById('imageUrlInput') as HTMLInputEleme
 
 function imageUrlSetter() {
   imageUrlForSpinner = imageUrlInput.value;
+  window.location.href = `${window.location.href}?imgUrl=${imageUrlInput.value}`;
 }
 
-const button2 = document.getElementById('imageUrlSetter');
-button2.onclick = imageUrlSetter;
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.has('imgUrl')) {
+  imageUrlForSpinner = urlParams.get('imgUrl');
+  imageUrlInput.value = urlParams.get('imgUrl');
+}
+
+const imageUrlSetterButton = document.getElementById('imageUrlSetter');
+imageUrlSetterButton.onclick = imageUrlSetter;
 
 // eslint-disable-next-line no-unused-vars
 function rotTween(to) {
@@ -325,8 +332,6 @@ function startSpinning() {
 const button = document.getElementById('startSpinning');
 button.onclick = startSpinning;
 
-
-
 const textArea = <HTMLInputElement>document.getElementById('input-lines');
 if (window.localStorage.TextEditorData) {
   textArea.value = window.localStorage.TextEditorData;
@@ -335,11 +340,6 @@ if (window.localStorage.TextEditorData) {
 textArea.addEventListener('keyup', () => {
   window.localStorage.TextEditorData = textArea.value;
 });
-
-const urlParams = new URLSearchParams(window.location.search);
-if (urlParams.has('imgUrl')) {
-  imageUrlForSpinner = urlParams.get('imgUrl');
-}
 
 if (process.env.NODE_ENV === 'production') {
   loadServiceWorker();
