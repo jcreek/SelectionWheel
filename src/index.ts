@@ -329,8 +329,8 @@ function startSpinning() {
   document.getElementById('imageUrlInput').style.display = 'none';
 }
 
-const button = document.getElementById('startSpinning');
-button.onclick = startSpinning;
+const startSpinningButton = document.getElementById('startSpinning');
+startSpinningButton.onclick = startSpinning;
 
 const textArea = <HTMLInputElement>document.getElementById('input-lines');
 if (window.localStorage.TextEditorData) {
